@@ -1,0 +1,73 @@
+{
+  "name": "@geut/apiness",
+  "version": "0.0.1",
+  "description": "Generate markdown documentation based on TS Inference and JSDoc.",
+  "main": "src/index.js",
+  "bin": {
+    "apiness": "./bin/cli.js"
+  },
+  "files": [
+    "lib",
+    "src",
+    "bin",
+    "index.js"
+  ],
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest --passWithNoTests",
+    "posttest": "npm run lint",
+    "lint": "standard",
+    "version": "chan release --allow-yanked ${npm_package_version} && git add .",
+    "prepublishOnly": "npm test"
+  },
+  "dependencies": {
+    "@geut/jsdast": "0.0.1",
+    "array-sort": "^1.0.0",
+    "camelcase": "^6.2.0",
+    "micromatch": "^4.0.2",
+    "remark-parse": "^9.0.0",
+    "remark-stringify": "^9.0.1",
+    "sade": "^1.7.4",
+    "to-vfile": "^6.1.0",
+    "unified": "^9.2.0",
+    "unist-builder": "^2.0.3",
+    "unist-util-parents": "^1.0.3"
+  },
+  "devDependencies": {
+    "@geut/chan": "^2.0.0",
+    "standard": "^16.0.3",
+    "jest": "^24.8.0"
+  },
+  "jest": {
+    "testMatch": [
+      "**/tests/**/*.test.js"
+    ]
+  },
+  "standard": {
+    "env": [
+      "jest",
+      "node",
+      "browser"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/geut/apiness.git"
+  },
+  "keywords": [
+    "jsdoc",
+    "tsdoc",
+    "api",
+    "generator",
+    "markdown"
+  ],
+  "author": {
+    "name": "GEUT",
+    "email": "contact@geutstudio.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/geut/apiness/issues"
+  },
+  "homepage": "https://github.com/geut/apiness#readme"
+}

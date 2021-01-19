@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`basic 1`] = `
+"<!-- apiness-intro -->
+
+A library for building widgets.\\\\
+The \\\\\`widget-lib\\\\\` defines the {@link IWidget} interface and {@link Widget} class,
+which are used to build widgets.
+
+## Usage
+
+<!-- apiness-usage -->
+
+#### Example usage of method1.
+
+\`\`\`js
+const human = new Human('pepe', 20)
+console.log(human.age)
+\`\`\`
+
+## API
+
+<!-- apiness-api -->
+
+#### \`human = new Human(name, age)\`
+
+Human class test
+
+*   \`name: string\` - Set a name
+*   \`age: number\` Set the age
+
+#### \`Human.create(name, age) => Human\`
+
+Static factory constructor
+
+*   \`name: string\`
+*   \`age: number\`
+
+#### \`human.sayHello() => string\`
+
+#### \`human.name: string (R)\`
+
+#### \`human.age: number\`
+
+#### \`humanFactory(name) => createHumanCallback\`
+
+It's a human factory
+
+*   \`name: string\` Set a name
+
+#### \`CONSTANT = \\"test\\"\`
+
+#### \`createHumanCallback(age) => Human\`
+
+This is a callback example
+
+*   \`age: number\`
+
+#### \`options: {}\`
+
+This is a typedef example
+
+*   \`a: string\` some a description
+*   \`b: number\`
+
+#### \`mutant = new Mutant(name, age)\`
+
+*   \`name: string\`
+*   \`age: number\`
+
+#### \`mutant.setPower(power) => any\`
+
+Set a power
+
+*   \`power: Power\`
+
+#### \`mutant.getPower() => Power\`
+
+#### \`power = new Power(opts)\`
+
+*   \`opts: Object\`
+    *   \`name: string | null = 'fire'\`
+
+#### \`power.name: string (R)\`
+"
+`;
