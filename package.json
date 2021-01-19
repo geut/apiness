@@ -69,5 +69,8 @@
   "bugs": {
     "url": "https://github.com/geut/apiness/issues"
   },
-  "homepage": "https://github.com/geut/apiness#readme"
+  "homepage": "https://github.com/geut/apiness#readme",
+  "publishConfig": {
+    "access": "public"
+  }
 }
