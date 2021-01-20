@@ -48,21 +48,6 @@ It's a human factory
 
 *   \`name: string\` Set a name
 
-#### \`CONSTANT = \\"test\\"\`
-
-#### \`createHumanCallback(age) => Human\`
-
-This is a callback example
-
-*   \`age: number\`
-
-#### \`options: {}\`
-
-This is a typedef example
-
-*   \`a: string\` some a description
-*   \`b: number\`
-
 #### \`mutant = new Mutant(name, age)\`
 
 *   \`name: string\`
@@ -82,5 +67,20 @@ Set a power
     *   \`name: string | null = 'fire'\`
 
 #### \`power.name: string (R)\`
+
+#### \`createHumanCallback(age) => Human\`
+
+This is a callback example
+
+*   \`age: number\`
+
+#### \`options: {}\`
+
+This is a typedef example
+
+*   \`a: string\` some a description
+*   \`b: number\`
+
+#### \`CONSTANT = \\"test\\"\`
 "
 `;
