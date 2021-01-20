@@ -9,16 +9,17 @@ const patternToArray = pattern => typeof pattern === 'string' ? pattern.split(',
 
 class JSDastToMarkdown {
   constructor (tree, opts = {}) {
-    const { sortModule = ['name'], sortStatement = ['name'], include, exclude } = opts
+    const { include, exclude, order } = opts
     this._tree = parents(tree)
-    this._modules = sort(this._tree.children, sortModule)
+    this._modules = sort(this._tree.children, ['name'])
     this._include = patternToArray(include)
     this._exclude = patternToArray(exclude)
+    this._order = patternToArray(order)
     this.intro = []
     this.usage = []
     this.api = []
     this._renderPackageDocumentation()
-    this._renderAPI(sortStatement)
+    this._renderAPI()
   }
 
   run () {
@@ -29,40 +30,49 @@ class JSDastToMarkdown {
     ])
   }
 
-  _renderAPI (sortStatement) {
+  _renderAPI () {
     const modules = this._modules
+
+    let exportedDeclarations = []
+    let exportedTypes = []
+    let nonExported = []
 
     modules.forEach(module => {
       const { children } = module
 
-      if (children.length !== 0) {
-        // Module name heading (disabled for now)
-        // this.api.push(u('heading', { depth: 3 }, [
-        //   u('text', module.name)
-        // ]))
-      }
-
-      const doc = module.doc
-
-      if (doc && doc.description && !doc.tags.find(t => t.tagName === 'packageDocumentation')) {
-        this.api.push(u('paragraph', [
-          u('text', doc.description.trim())
-        ]))
-      }
-
-      const exportedDeclarations = sort(
-        children
-          .filter(n => n.isExported && !(n.type.includes('Type') || n.type.includes('Variable'))),
-        sortStatement)
-      const exportedTypes = sort(
-        children
-          .filter(n => n.isExported && (n.type.includes('Type') || n.type.includes('Variable'))),
-        sortStatement)
-      const nonExported = sort(children.filter(n => !n.isExported), sortStatement)
-      exportedDeclarations.forEach(statement => this._renderStatement(statement))
-      exportedTypes.forEach(statement => this._renderStatement(statement))
-      nonExported.forEach(statement => this._renderStatement(statement))
+      exportedDeclarations = [...exportedDeclarations, ...children.filter(n => n.isExported && !(n.type.includes('Type') || n.type.includes('Variable')))]
+      exportedTypes = [...exportedTypes, ...children.filter(n => n.isExported && (n.type.includes('Type') || n.type.includes('Variable')))]
+      nonExported = [...nonExported, ...children.filter(n => !n.isExported)]
     })
+
+    let statements = [...exportedDeclarations, ...exportedTypes, ...nonExported]
+
+    if (!this._order) {
+      return statements.forEach(statement => this._renderStatement(statement))
+    }
+
+    const groupOrder = {}
+
+    this._order.forEach(order => {
+      if (!groupOrder[order]) {
+        groupOrder[order] = []
+      }
+
+      const nextStatements = []
+      groupOrder[order] = statements.filter(statement => {
+        if (micromatch.isMatch(getId(statement), order)) {
+          return true
+        }
+        nextStatements.push(statement)
+        return false
+      })
+      statements = nextStatements
+    })
+
+    Object.keys(groupOrder).forEach(order => {
+      groupOrder[order].forEach(statement => this._renderStatement(statement))
+    })
+    statements.forEach(statement => this._renderStatement(statement))
   }
 
   _renderStatement (statement) {

@@ -15,6 +15,7 @@ sade('apiness <entry>', true)
   .option('-m, --markdown', 'Define the markdown filepath', 'README.md')
   .option('--include', 'Include statements by glob matching')
   .option('--exclude', 'Exclude statements by glob matching')
+  .option('--order', 'Order statements by glog matching')
   .option('--stdout', 'Print to stdout', false)
   .action((entry, opts) => {
     const stdout = opts.stdout || !process.stdout.isTTY
@@ -23,7 +24,8 @@ sade('apiness <entry>', true)
       entry,
       file: vfile.readSync(path.resolve(opts.markdown)),
       include: opts.include,
-      exclude: opts.exclude
+      exclude: opts.exclude,
+      order: opts.order
     })
 
     if (stdout) {

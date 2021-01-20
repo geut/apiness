@@ -26,12 +26,12 @@ function renderSection (tree, section, type) {
 }
 
 function transform (opts = {}) {
-  const { entry, include, exclude, parserOptions } = opts
+  const { entry, include, exclude, order, parserOptions } = opts
 
   const typeDefParser = new TypeDefinitionParser(parserOptions)
 
   return (tree) => {
-    const { intro, usage, api } = new JSDastToMarkdown(typeDefParser.run({ path: entry }), { include, exclude })
+    const { intro, usage, api } = new JSDastToMarkdown(typeDefParser.run({ path: entry }), { include, exclude, order })
     renderSection(tree, intro, 'intro')
     renderSection(tree, usage, 'usage')
     renderSection(tree, api, 'api')
@@ -40,14 +40,14 @@ function transform (opts = {}) {
 }
 
 function apiness (opts = {}) {
-  const { entry, file, include, exclude, parserOptions } = opts
+  const { entry, file, include, exclude, order, parserOptions } = opts
 
   assert(entry)
   assert(file)
 
   const processor = unified()
     .use(remarkParse)
-    .use(transform, { entry, include, exclude, parserOptions })
+    .use(transform, { entry, include, exclude, order, parserOptions })
     .use(remarkStringify)
 
   processor.process(file)
