@@ -2,10 +2,13 @@ const u = require('unist-builder')
 const camelcase = require('camelcase')
 
 function parseParameterSignature (statement) {
-  let parameters = statement.parameters
+  let parameters
+
   if (statement.type === 'ClassDeclaration') {
     const ctor = statement.children.find(n => n.type === 'Constructor')
-    parameters = ctor && ctor.parameters
+    parameters = ctor && ctor.children
+  } else {
+    parameters = statement.children
   }
 
   if (!parameters || parameters.length === 0) return ''
@@ -32,6 +35,11 @@ function parseSignature (statement) {
 
   if (['FunctionDeclaration', 'FunctionType'].includes(statement.type)) {
     return `${statement.name}(${parseParameterSignature(statement)}) => ${statement.valueType}`
+  }
+
+  if (statement.type === 'Event') {
+    const parameters = parseParameterSignature(statement)
+    return `${parentSignatureName(statement)}.on('${statement.name}'${parameters.length > 0 ? ', ' + parameters : ''}) => ${statement.valueType}`
   }
 
   if (statement.type === 'VariableDeclaration') {

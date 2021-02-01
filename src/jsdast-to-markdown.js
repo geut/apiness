@@ -1,5 +1,4 @@
 const u = require('unist-builder')
-const parents = require('unist-util-parents')
 const sort = require('array-sort')
 const micromatch = require('micromatch')
 
@@ -10,7 +9,7 @@ const patternToArray = pattern => typeof pattern === 'string' ? pattern.split(',
 class JSDastToMarkdown {
   constructor (tree, opts = {}) {
     const { include, exclude, order } = opts
-    this._tree = parents(tree)
+    this._tree = tree
     this._modules = sort(this._tree.children, ['name'])
     this._include = patternToArray(include)
     this._exclude = patternToArray(exclude)
@@ -98,24 +97,26 @@ class JSDastToMarkdown {
       ]))
     }
 
-    if (['FunctionDeclaration', 'FunctionType', 'MethodDeclaration'].includes(statement.type)) {
-      this._renderParameters(statement.parameters)
+    if (['FunctionDeclaration', 'FunctionType', 'MethodDeclaration', 'Event'].includes(statement.type)) {
+      this._renderParameters(statement.children)
       return
     }
 
     if (statement.type === 'TypeLiteral') {
       this._renderPropertySignatures(statement)
+      this._renderEvents(statement)
       return
     }
 
     if (statement.type === 'ClassDeclaration') {
       const ctor = statement.children.find(n => n.type === 'Constructor')
       if (ctor) {
-        this._renderParameters(ctor.parameters)
+        this._renderParameters(ctor.children)
       }
       this._renderMethods(statement)
       this._renderPropertyDeclarations(statement)
       this._renderAccesors(statement)
+      this._renderEvents(statement)
     }
   }
 
@@ -205,6 +206,14 @@ class JSDastToMarkdown {
 
       return this._renderStatement(accessors[0])
     })
+  }
+
+  _renderEvents (statement) {
+    statement.children
+      .filter(n => n.type === 'Event')
+      .forEach(event => {
+        this._renderStatement(event)
+      })
   }
 
   _renderPackageDocumentation () {

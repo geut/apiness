@@ -21,7 +21,7 @@
     "prepublishOnly": "npm test"
   },
   "dependencies": {
-    "@geut/jsdast": "0.0.1",
+    "@geut/jsdast": "^0.0.3",
     "array-sort": "^1.0.0",
     "camelcase": "^6.2.0",
     "micromatch": "^4.0.2",
@@ -30,8 +30,7 @@
     "sade": "^1.7.4",
     "to-vfile": "^6.1.0",
     "unified": "^9.2.0",
-    "unist-builder": "^2.0.3",
-    "unist-util-parents": "^1.0.3"
+    "unist-builder": "^2.0.3"
   },
   "devDependencies": {
     "@geut/chan": "^2.0.0",

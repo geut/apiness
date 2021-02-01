@@ -63,7 +63,7 @@ Set a power
 
 #### \`power = new Power(opts)\`
 
-*   \`opts: Object\`
+*   \`opts: any\`
     *   \`name: string | null = 'fire'\`
 
 #### \`power.name: string (R)\`
