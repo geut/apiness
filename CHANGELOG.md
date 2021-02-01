@@ -6,7 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## 0.0.4 - 2021-02-01 [YANKED]
+
 ## 0.0.3 - 2021-02-01 [YANKED]
 
 ## 0.0.2 - 2021-01-20 [YANKED]
-[Unreleased]: https://github.com/geut/apiness/compare/v0.0.3...HEAD
+[Unreleased]: https://github.com/geut/apiness/compare/v0.0.4...HEAD
