@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`basic 1`] = `
-"<!-- apiness-intro -->
+"<!-- apiness/intro -->
 
 A library for building widgets.\\\\
 The \\\\\`widget-lib\\\\\` defines the {@link IWidget} interface and {@link Widget} class,
@@ -9,7 +9,7 @@ which are used to build widgets.
 
 ## Usage
 
-<!-- apiness-usage -->
+<!-- apiness/usage -->
 
 #### Example usage of method1.
 
@@ -20,7 +20,7 @@ console.log(human.age)
 
 ## API
 
-<!-- apiness-api -->
+<!-- apiness/api -->
 
 #### \`human = new Human(name, age)\`
 

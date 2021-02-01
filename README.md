@@ -21,15 +21,15 @@ Generate markdown documentation based on TS Inference and JSDoc.
 *   `<!-- apiness-api -->`: For Statement Type Definitions by TS Inference and/or JSDoc.
 
 ```markdown
-<!-- apiness-intro -->
+<!-- apiness/intro -->
 
 ## Usage
 
-<!-- apiness-usage -->
+<!-- apiness/usage -->
 
 ## API
 
-<!-- apiness-api -->
+<!-- apiness/api -->
 ```
 
 2.  Document your code.

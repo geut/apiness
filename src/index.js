@@ -7,7 +7,7 @@ const assert = require('assert')
 const JSDastToMarkdown = require('./jsdast-to-markdown')
 
 function getLimits (tree, type) {
-  const start = tree.children.findIndex(n => n.type === 'html' && n.value.includes('apiness-' + type))
+  const start = tree.children.findIndex(n => n.type === 'html' && n.value.includes('apiness/' + type))
   if (start === -1) return null
   let end = tree.children.slice(start).findIndex(n => n.type === 'heading' && n.depth === 2)
   end = end !== -1 ? start + end : tree.children.length

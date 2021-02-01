@@ -7,15 +7,15 @@ test('basic', async () => {
     entry: path.resolve('./tests/example/index.js'),
     file: vfile({
       path: 'api.md', contents: `
-<!-- apiness-intro -->
+<!-- apiness/intro -->
 
 ## Usage
 
-<!-- apiness-usage -->
+<!-- apiness/usage -->
 
 ## API
 
-<!-- apiness-api -->
+<!-- apiness/api -->
 `
     })
   })
