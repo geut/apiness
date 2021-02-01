@@ -61,10 +61,10 @@ Set a power
 
 #### \`mutant.getPower() => Power\`
 
-#### \`power = new Power(opts)\`
+#### \`power = new Power([opts])\`
 
-*   \`opts: any\`
-    *   \`name: string | null = 'fire'\`
+*   \`opts: any = {}\`
+    *   \`name: string = 'fire'\`
 
 #### \`power.name: string (R)\`
 
