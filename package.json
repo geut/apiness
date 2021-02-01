@@ -1,6 +1,6 @@
 {
   "name": "@geut/apiness",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Generate markdown documentation based on TS Inference and JSDoc.",
   "main": "src/index.js",
   "bin": {
