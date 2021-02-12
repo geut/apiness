@@ -26,15 +26,20 @@ console.log(human.age)
 
 Human class test
 
-*   \`name: string\` - Set a name
-*   \`age: number\` Set the age
+- \`name: string\` - Set a name
+- \`age: number\` Set the age
+
+\`\`\`js
+const human = new Human('pepe', 20)
+console.log(human.age)
+\`\`\`
 
 #### \`Human.create(name, age) => Human\`
 
 Static factory constructor
 
-*   \`name: string\`
-*   \`age: number\`
+- \`name: string\`
+- \`age: number\`
 
 #### \`human.sayHello() => string\`
 
@@ -46,25 +51,25 @@ Static factory constructor
 
 It's a human factory
 
-*   \`name: string\` Set a name
+- \`name: string\` Set a name
 
 #### \`mutant = new Mutant(name, age)\`
 
-*   \`name: string\`
-*   \`age: number\`
+- \`name: string\`
+- \`age: number\`
 
 #### \`mutant.setPower(power) => any\`
 
 Set a power
 
-*   \`power: Power\`
+- \`power: Power\`
 
 #### \`mutant.getPower() => Power\`
 
-#### \`power = new Power([opts])\`
+#### \`power = new Power(opts?)\`
 
-*   \`opts: any = {}\`
-    *   \`name: string = 'fire'\`
+- \`opts?: any = {}\`
+  - \`name?: string = 'fire'\`
 
 #### \`power.name: string (R)\`
 
@@ -72,14 +77,14 @@ Set a power
 
 This is a callback example
 
-*   \`age: number\`
+- \`age: number\`
 
 #### \`options: {}\`
 
 This is a typedef example
 
-*   \`a: string\` some a description
-*   \`b: number\`
+- \`a: string\` some a description
+- \`b: number\`
 
 #### \`CONSTANT = \\"test\\"\`
 "
