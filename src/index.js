@@ -48,7 +48,10 @@ function apiness (opts = {}) {
   const processor = unified()
     .use(remarkParse)
     .use(transform, { entry, include, exclude, order, parserOptions })
-    .use(remarkStringify)
+    .use(remarkStringify, {
+      bullet: '-',
+      listItemIndent: 'one'
+    })
 
   processor.process(file)
 

@@ -6,6 +6,8 @@ const { parseSignature, parseExamples, getId } = require('./utils')
 
 const patternToArray = pattern => typeof pattern === 'string' ? pattern.split(',') : pattern
 
+const getModule = node => node.type === 'Module' ? node : getModule(node.parent)
+
 class JSDastToMarkdown {
   constructor (tree, opts = {}) {
     const { include, exclude, order } = opts
@@ -99,6 +101,7 @@ class JSDastToMarkdown {
 
     if (['FunctionDeclaration', 'FunctionType', 'MethodDeclaration', 'Event'].includes(statement.type)) {
       this._renderParameters(statement.children)
+      parseExamples(getModule(statement), statement.doc).forEach(ex => this.api.push(ex))
       return
     }
 
@@ -112,6 +115,7 @@ class JSDastToMarkdown {
       const ctor = statement.children.find(n => n.type === 'Constructor')
       if (ctor) {
         this._renderParameters(ctor.children)
+        parseExamples(getModule(statement), statement.doc).forEach(ex => this.api.push(ex))
       }
       this._renderMethods(statement)
       this._renderPropertyDeclarations(statement)
@@ -130,12 +134,13 @@ class JSDastToMarkdown {
     }, parameters.map(param => {
       const description = param.doc && param.doc.description
       const defaultValue = param.defaultValue ? ` = ${param.defaultValue}` : ''
+
       return u('listItem', {
         spread: false,
         checked: null
       }, [
         u('paragraph', [
-          u('inlineCode', `${param.name}: ${param.valueType}${defaultValue}`),
+          u('inlineCode', `${param.name}${param.isOptional ? '?' : ''}: ${param.valueType}${defaultValue}`),
           description ? u('text', ` ${description}`) : null
         ].filter(Boolean)),
         param.children && this._renderParameters(param.children, false)

@@ -13,7 +13,7 @@ function parseParameterSignature (statement) {
 
   if (!parameters || parameters.length === 0) return ''
 
-  return parameters.map(p => p.isOptional ? `[${p.name}]` : p.name).join(', ')
+  return parameters.map(p => `${p.name}${p.isOptional ? '?' : ''}`).join(', ')
 }
 
 function parentSignatureName (statement) {
@@ -69,6 +69,8 @@ const captionRegex = /<caption\s*.*>(\s*.*)<\/caption>/i
 const langRegex = /<lang\s*.*>(\s*.*)<\/lang>/i
 
 function parseExamples (mod, doc, heading = true) {
+  if (!doc) return []
+
   return doc.tags.filter(t => t.tagName === 'example').map(t => {
     let text = t.text
 

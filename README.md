@@ -16,9 +16,9 @@ Generate markdown documentation based on TS Inference and JSDoc.
 
 1.  Define the marks where the documentation API should be added in the README file. `apiness` defines 3 marks:
 
-*   `<!-- apiness-intro -->`: For `@packageDocumentation` tag.
-*   `<!-- apiness-usage -->`: For module `@examples` tag.
-*   `<!-- apiness-api -->`: For Statement Type Definitions by TS Inference and/or JSDoc.
+*   `<!-- apiness/intro -->`: For `@packageDocumentation` tag.
+*   `<!-- apiness/usage -->`: For module `@examples` tag.
+*   `<!-- apiness/api -->`: For Statement Type Definitions by TS Inference and/or JSDoc.
 
 ```markdown
 <!-- apiness/intro -->
