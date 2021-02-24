@@ -68,7 +68,7 @@ Set a power
 
 #### \`power = new Power(opts?)\`
 
-- \`opts?: any = {}\`
+- \`opts?: Object = {}\`
   - \`name?: string = 'fire'\`
 
 #### \`power.name: string (R)\`
