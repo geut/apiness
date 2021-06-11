@@ -11,7 +11,7 @@ Generate markdown documentation based on TS Inference and JSDoc.
 ## Install
 
 ```bash
-$ npm install @geut/apiness
+$ npm install -g @geut/apiness
 ```
 
 ## Usage
